@@ -1,0 +1,14 @@
+before_install:
+  - curl -sSL https://get.docker.com/ | sh
+branches:
+    only:
+        - master
+script:
+  - scripts/build-latest.sh
+  - scripts/deploy-latest.sh
+notifications:
+    recipients:
+        - lunnlew@gmail.com
+    email:
+        on_success: change
+        on_failure: always
