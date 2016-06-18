@@ -1,17 +1,22 @@
-before_install:
-  - apt-get install python-pip python-dev
-  - pip install -U docker-compose
+sudo: required
+language: ruby
 services:
   - docker
 branches:
     only:
         - master
+install:
+  - apt-get install python-pip python-dev
+  - pip install -U docker-compose
 before_script:
  - chmod +x scripts/build-latest.sh
  - chmod +x scripts/deploy-latest.sh
 script:
-  - sudo scripts/build-latest.sh
-  - sudo scripts/deploy-latest.sh
+  - scripts/build-latest.sh
+  - docker run --name shadowsocks-server -p 8388:8388/tcp -p 8388:8388/udp -e PASSWORD=5ouMnqPyzseL -e METHOD=aes-256-cfb --restart always lunnlew/shadowsocks-server
+  - docker ps | grep -q shadowsocks-server
+deploy:
+  - scripts/deploy-latest.sh
 notifications:
     recipients:
         - lunnlew@gmail.com
