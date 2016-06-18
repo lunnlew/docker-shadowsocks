@@ -11,7 +11,7 @@ branches:
 #  - sudo apt-get install python-pip python-dev -y
 #  - sudo pip install -U -I docker-compose==1.6.2
 before_script:
-  - curl -L https://github.com/docker/compose/releases/download/1.5.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+  - sudo curl -L https://github.com/docker/compose/releases/download/1.5.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
   - chmod +x /usr/local/bin/docker-compose
   - chmod +x scripts/build-latest.sh
   - chmod +x scripts/deploy-latest.sh
