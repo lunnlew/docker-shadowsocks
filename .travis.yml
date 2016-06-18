@@ -1,5 +1,8 @@
 before_install:
-  - curl -sSL https://get.docker.com/ | sh
+  - apt-get install python-pip python-dev
+  - pip install -U docker-compose
+services:
+  - docker
 branches:
     only:
         - master
@@ -7,8 +10,8 @@ before_script:
  - chmod +x scripts/build-latest.sh
  - chmod +x scripts/deploy-latest.sh
 script:
-  - scripts/build-latest.sh
-  - scripts/deploy-latest.sh
+  - sudo scripts/build-latest.sh
+  - sudo scripts/deploy-latest.sh
 notifications:
     recipients:
         - lunnlew@gmail.com
